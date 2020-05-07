@@ -1,32 +1,56 @@
--- ex 1.
+double x = x + x
 
--- ex 2.
+quadruple x = double (double x)
 
--- ex 3.
+factorial n = product [1..n]
+
+average ns = sum ns `div` length ns
+
 n = a `div` length xs
   where
     a = 10
     xs = [1,2,3,4,5]
 
--- ex 4.
-lasto xs = xs !! (length xs - 1)
-lastRev xs = head (reverse xs)
-lastRecur [x] = x
+--
+--
+
+lastSelect = (!!) <*> ((subtract 1) . length)
+lastRevHead = head . reverse
+lastRecur (x:[]) = x
 lastRecur (x:xs) = lastRecur xs
 
--- ex 5.
-inito xs = take (length xs - 1) xs
-initRev xs = reverse (tail (reverse xs))
-initRecur [x] = []
-initRecur (x:xs) = [x] ++ initRecur(xs)
+initTake = (flip take) <*> ((subtract 1) . length)
+initRev = reverse . tail . reverse
+initRecur (x:[]) = []
+initRecur (x:xs) = x : initRecur(xs)
+
+putNewLn () = putStrLn "\n"
 
 main = do
-  print n
-  print (last [0,9,2,6,7,2,7,2,1,2])
-  print (lasto [0,9,2,6,7,2,7,2,1,2])
-  print (lastRev [0,9,2,6,7,2,7,2,1,2])
-  print (lastRecur [0,9,2,6,7,2,7,2,1,2])
-  print (init [0,9,2,6,7,2,7,2,1,2])
-  print (inito [0,9,2,6,7,2,7,2,1,2])
-  print (initRev [0,9,2,6,7,2,7,2,1,2])
-  print (initRecur [0,9,2,6,7,2,7,2,1,2])
+  putStrLn "{- 2.5 Haskell scripts -}"
+  putStrLn ("quadruple 10 = " ++ show (quadruple 10))
+  putStrLn ("take (double 2) [1,2,3,4,5] = " ++ show (take (double 2) [1,2,3,4,5]))
+  putStrLn ("factorial 10 = " ++ show (factorial 10))
+  putStrLn ("average [1,2,3,4,5] = " ++ show (average [1,2,3,4,5]))
+  putNewLn ()
+  --
+  putStrLn "{- ex 2.2 -}"
+  putStrLn ("2^3*4 = " ++ show ((2 ^ 3) * 4))
+  putStrLn ("2*3+4*5 = " ++ show ((2 * 3) + (4 * 5)))
+  putStrLn ("2+3*4^5 = " ++ show (2 + (3 * (4 ^ 5))))
+  putNewLn ()
+  --
+  putStrLn "{- ex 2.3 -}"
+  putStrLn ("n = " ++ show n)
+  putNewLn ()
+  --
+  putStrLn "{- ex 2.4 -}"
+  putStrLn ("lastSelect [4,3,2,1] = " ++ show (lastSelect [4,3,2,1]))
+  putStrLn ("lastRevHead [4,3,2,1] = " ++ show (lastRevHead [4,3,2,1]))
+  putStrLn ("lastRecur [4,3,2,1] = " ++ show (lastRecur [4,3,2,1]))
+  putNewLn ()
+  --
+  putStrLn "{- ex 2.5 -}"
+  putStrLn ("initTake [4,3,2,1] = " ++ show (initTake [4,3,2,1]))
+  putStrLn ("initRev [4,3,2,1] = " ++ show (initRev [4,3,2,1]))
+  putStrLn ("initRecur [4,3,2,1] = " ++ show (initRecur [4,3,2,1]))
